@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Náhodná stránka</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      padding: 28px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(12px);
+    }
+    button {
+      background: #fff;
+      color: #333;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 24px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    .random-number {
+      font-size: 4rem;
+      margin: 18px 0 0;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Náhodná stránka</h1>
+    <p>Stiskni tlačítko a vygeneruj náhodné číslo, citát a barvu pozadí.</p>
+    <div class="random-number" id="randomNumber">?</div>
+    <button id="generateButton">Generuj náhodně</button>
+  </div>
+
+  <script>
+    const quotes = [
+      'Žij každý den, jako by byl poslední.',
+      'Malé kroky vedou k velkým věcem.',
+      'Úsměv je nejkrásnější ozdoba.',
+      'Každý den je nová příležitost.',
+      'Kreativita je inteligence, která se baví.'
+    ];
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randomColor() {
+      const r = randomInt(0, 255);
+      const g = randomInt(0, 255);
+      const b = randomInt(0, 255);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    document.getElementById('generateButton').addEventListener('click', () => {
+      const number = randomInt(1, 999);
+      const quote = quotes[randomInt(0, quotes.length - 1)];
+      const color = randomColor();
+
+      document.getElementById('randomNumber').textContent = number;
+      document.querySelector('p').textContent = quote;
+      document.body.style.background = `linear-gradient(135deg, ${color}, #8f94fb)`;
+    });
+  </script>
+</body>
+</html>
